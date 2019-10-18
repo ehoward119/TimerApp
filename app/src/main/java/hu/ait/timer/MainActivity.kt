@@ -9,17 +9,19 @@ import kotlinx.android.synthetic.main.mark_layout.view.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    var time = 0
-    lateinit var timer: Timer
-    var active = false
-    var started = false
+
+    private var time = 0
+    private lateinit var timer: Timer
+    private var active = false
+    private var started = false
+
     inner class EditTimer : TimerTask() {
         override fun run(){
             if(active){
                 runOnUiThread {
                     time++
-                    var minutes = (time/60).toString().padStart(2, '0')
-                    var seconds = (time%60).toString().padStart(2, '0')
+                    val minutes = (time/60).toString().padStart(2, '0')
+                    val seconds = (time%60).toString().padStart(2, '0')
                     tvData.text ="$minutes:$seconds"
                 }
             }
@@ -53,11 +55,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addMark() {
-        var markView = layoutInflater.inflate(
+        val markView = layoutInflater.inflate(
             R.layout.mark_layout, null, false
         )
-        var minutes = (time/60).toString().padStart(2, '0')
-        var seconds = (time%60).toString().padStart(2, '0')
+        val minutes = (time/60).toString().padStart(2, '0')
+        val seconds = (time%60).toString().padStart(2, '0')
         markView.tvData.text = "$minutes:$seconds"
         layoutContent.addView(markView, 0)
 
